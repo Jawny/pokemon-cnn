@@ -17,10 +17,11 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout
 from tensorflow.keras.models import load_model
 
-from google.colab import drive
-drive.mount('/content/drive')
+# from google.colab import drive
+# drive.mount('/content/drive')
 
-data_dir = '/content/drive/MyDrive/PokemonData'
+# data_dir = '/content/drive/MyDrive/PokemonData'
+data_dir = '/mnt/data'
 image_ext = ['jpeg', 'jpg', 'bmp', 'png', 'svg']
 
 """Remove any dodgy images."""
