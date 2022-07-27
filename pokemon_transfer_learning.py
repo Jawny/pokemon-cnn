@@ -16,10 +16,10 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropou
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 
-from google.colab import drive
-drive.mount('/content/drive')
+# from google.colab import drive
+# drive.mount('/content/drive')
 
-data_dir = '/content/drive/MyDrive/PokemonData'
+data_dir = '/mnt/data/'
 
 """Set variables to reformat img heights and width and set batch size."""
 
@@ -46,6 +46,19 @@ val_ds = tf.keras.preprocessing.image_dataset_from_directory(
   image_size=(img_height, img_width),
   batch_size=batch_size)
 
+class_names = train_ds.class_names
+print(class_names)
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 10))
+for images, labels in train_ds.take(1):
+  for i in range(6):
+    ax = plt.subplot(3, 3, i + 1)
+    plt.imshow(images[i].numpy().astype("uint8"))
+    plt.title(class_names[labels[i]])
+    plt.axis("off")
+
 """import pretrained model and output layer (where learning will take place)"""
 
 resnet_model = Sequential()
@@ -68,3 +81,27 @@ resnet_model.compile(optimizer=Adam(lr=0.001),loss='sparse_categorical_crossentr
 
 history = resnet_model.fit(train_ds, validation_data=val_ds, epochs=10)
 model.save(os.path.join('/results/models','pokemonclassifier.h5'))
+
+"""Inference"""
+
+# from keras.models import load_model
+# inference_model = model = load_model('/content/drive/MyDrive/pokemonclassifier.h5')
+
+# import cv2
+# import os
+# import pathlib
+
+# inference_dir = pathlib.Path("/content/drive/MyDrive/PokemonData")
+# selected_pokemon = list(inference_dir.glob('Abra/*'))[10]
+# print(selected_pokemon)
+# PIL.Image.open(str(selected_pokemon))
+
+# image=cv2.imread(str(selected_pokemon))
+# image_resized= cv2.resize(image, (img_height,img_width))
+# image=np.expand_dims(image_resized,axis=0)
+# print(image.shape)
+
+# pred=inference_model.predict(image)
+# print(pred)
+# output_class=class_names[np.argmax(pred)]
+# print("The predicted class is", output_class)
