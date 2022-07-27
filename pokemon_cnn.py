@@ -8,7 +8,6 @@ Original file is located at
 """
 
 import tensorflow as tf
-import cv2
 import os
 import numpy as np
 import imghdr
@@ -42,12 +41,12 @@ data = tf.keras.utils.image_dataset_from_directory(data_dir)
 data_iterator = data.as_numpy_iterator()
 batch = data_iterator.next()
 
-scaled_data = data.map(lambda x,y: (x/255,y))
+scaled_data = data.map(lambda x, y: (x/255, y))
 scaled_iterator = scaled_data.as_numpy_iterator()
 
 batch = scaled_iterator.next()
 
-fig, ax = plt.subplots(ncols=4, figsize=(20,20))
+fig, ax = plt.subplots(ncols=4, figsize=(20, 20))
 for idx, img in enumerate(batch[0][:4]):
     ax[idx].imshow(img)
     ax[idx].title.set_text(batch[1][idx])
@@ -61,23 +60,25 @@ val = scaled_data.skip(train_size).take(val_size)
 test = scaled_data.skip(train_size+val_size).take(test_size)
 
 model = Sequential()
-model.add(Conv2D(16, (3,3), 1, activation='relu', input_shape=(256,256,3)))
+model.add(Conv2D(16, (3, 3), 1, activation='relu', input_shape=(256, 256, 3)))
 model.add(MaxPooling2D())
-model.add(Conv2D(32, (3,3), 1, activation='relu'))
+model.add(Conv2D(32, (3, 3), 1, activation='relu'))
 model.add(MaxPooling2D())
-model.add(Conv2D(16, (3,3), 1, activation='relu'))
+model.add(Conv2D(16, (3, 3), 1, activation='relu'))
 model.add(MaxPooling2D())
 model.add(Flatten())
 model.add(Dense(256, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
-model.compile('adam', loss=tf.losses.BinaryCrossentropy(), metrics=['accuracy'])
+model.compile('adam', loss=tf.losses.BinaryCrossentropy(),
+              metrics=['accuracy'])
 
 model.summary()
 
-logdir='logs'
+logdir = 'logs'
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
 
-hist = model.fit(train, epochs=20, validation_data=val, callbacks=[tensorboard_callback])
+hist = model.fit(train, epochs=20, validation_data=val,
+                 callbacks=[tensorboard_callback])
 
-model.save(os.path.join('models','pokemonclassifier.h5'))
+model.save(os.path.join('models', 'pokemonclassifier.h5'))
