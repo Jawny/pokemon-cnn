@@ -80,7 +80,7 @@ resnet_model.summary()
 resnet_model.compile(optimizer=Adam(lr=0.001),loss='sparse_categorical_crossentropy',metrics=['accuracy'])
 
 history = resnet_model.fit(train_ds, validation_data=val_ds, epochs=10)
-model.save(os.path.join('/results/models','pokemonclassifier.h5'))
+resnet_model.save(os.path.join('/results/models','pokemonclassifier.h5'))
 
 """Inference"""
 
