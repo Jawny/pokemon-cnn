@@ -2,7 +2,7 @@ import os
 import cv2
 import imghdr
 
-dir = '/Users/joliao/work/datasets/PokemonDataCopy'
+dir = './PokemonData'
 image_ext = ['jpeg', 'jpg', 'png']
 
 
@@ -40,12 +40,13 @@ def flip_vertically(image, folderPath, fileName):
 
 for folder in os.listdir(dir):
     folderPath = os.path.join(dir, folder)
-for fileName in os.listdir(folderPath):
-    filePath = os.path.join(folderPath, fileName)
-    tip = imghdr.what(filePath)
+    for fileName in os.listdir(folderPath):
+        filePath = os.path.join(folderPath, fileName)
+        tip = imghdr.what(filePath)
 
-    if tip in image_ext:
-        image = cv2.imread(filePath)
-        greyscale(image, folderPath, fileName)
-        flip_horizontally(image, folderPath, fileName)
-        flip_vertically(image, folderPath, fileName)
+        if tip in image_ext:
+            image = cv2.imread(filePath)
+            print(filePath)
+            greyscale(image, folderPath, fileName)
+            flip_horizontally(image, folderPath, fileName)
+            flip_vertically(image, folderPath, fileName)
