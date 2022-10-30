@@ -1,4 +1,3 @@
-import { Tensor } from "@tensorflow/tfjs-node";
 import * as fs from "fs";
 const tf = require("@tensorflow/tfjs-node");
 
@@ -12,5 +11,13 @@ export const convertImageToTensor = (path: string) => {
     return expandDimsTensor;
   } catch (error) {
     return null;
+  }
+};
+
+export const deleteFile = (path: string) => {
+  try {
+    fs.unlinkSync(path);
+  } catch (error) {
+    console.error(`failed to delete file at ${path}`);
   }
 };
