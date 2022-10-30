@@ -8,12 +8,9 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@src": ["src"],
-      "@src/*": ["src/*"],
-      "@utils": ["src/utils"],
-      "@utils/*": ["src/utils/*"]
+      "@utils": ["utils"]
     }
   }
 }

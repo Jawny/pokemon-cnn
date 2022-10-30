@@ -2,9 +2,9 @@
   "name": "pokemon-cnn",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "tsnd --respawn -r tsconfig-paths/register index.ts",
+    "start": "tsnd --respawn -r tsconfig-paths/register src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,17 +13,20 @@
   "devDependencies": {
     "@types/express": "^4.17.14",
     "ts-node": "^9.1.1",
-    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths": "^4.1.0",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "@tensorflow/tfjs-node": "^4.0.0",
     "@types/body-parser": "^1.19.2",
     "@types/cors": "^2.8.12",
+    "@types/multer": "^1.4.7",
     "@types/node": "^14.0.4",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "multer": "^1.4.5-lts.1",
     "ts-node-dev": "^1.1.6"
   }
 }
