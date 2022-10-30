@@ -1,0 +1,29 @@
+{
+  "name": "pokemon-cnn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsnd --respawn -r tsconfig-paths/register index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.12",
+    "@types/node": "^14.0.4",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "ts-node-dev": "^1.1.6"
+  }
+}
