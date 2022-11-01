@@ -17,7 +17,7 @@ inferenceRoute.post(
       const { path } = req.file;
 
       const model = await tf.loadGraphModel(
-        "file:///home/johnny/code/pokemon-cnn/training/results/tfjs/model.json"
+        "https://raw.githubusercontent.com/Jawny/pokemon-cnn/master/server/src/static/tfjs/model.json"
       );
       const tensorImage = convertImageToTensor(`./${path}`);
       const tensorPrediction = model.predict(tensorImage);
